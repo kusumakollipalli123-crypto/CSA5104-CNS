@@ -1,0 +1,43 @@
+def matrix(key):
+    key = key.upper().replace("J", "I")
+    s = ""
+
+    for c in key + "ABCDEFGHIKLMNOPQRSTUVWXYZ":
+        if c not in s:
+            s += c
+
+    return [list(s[i:i+5]) for i in range(0, 25, 5)]
+
+
+def pos(m, c):
+    for i in range(5):
+        for j in range(5):
+            if m[i][j] == c:
+                return i, j
+
+
+key = input("Key: ")
+text = input("Plaintext: ").upper().replace("J", "I")
+text = "".join(c for c in text if c.isalpha())
+
+m = matrix(key)
+
+if len(text) % 2:
+    text += "X"
+
+ans = ""
+
+for k in range(0, len(text), 2):
+    a, b = pos(m, text[k]), pos(m, text[k+1])
+
+    if a[0] == b[0]:
+        ans += m[a[0]][(a[1]+1)%5]
+        ans += m[b[0]][(b[1]+1)%5]
+    elif a[1] == b[1]:
+        ans += m[(a[0]+1)%5][a[1]]
+        ans += m[(b[0]+1)%5][b[1]]
+    else:
+        ans += m[a[0]][b[1]]
+        ans += m[b[0]][a[1]]
+
+print("Ciphertext:", ans)
