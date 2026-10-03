@@ -1,0 +1,20 @@
+import java.util.*;
+public class Main {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+String text = sc.nextLine();
+String key = sc.nextLine();
+String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+StringBuilder result = new StringBuilder();
+for (char ch : text.toUpperCase().toCharArray()) {
+if (ch >= 'A' && ch <= 'Z') {
+int index = ch - 'A';
+result.append(key.charAt(index));
+}
+else {
+result.append(ch);
+}
+        }
+      System.out.println(result);
+    }
+}
