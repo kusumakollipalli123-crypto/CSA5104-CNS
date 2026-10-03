@@ -1,0 +1,21 @@
+import java.util.*;
+public class Main {
+public static void main(String[] args) {
+ Scanner sc = new Scanner(System.in);
+String text = sc.nextLine().toUpperCase();
+String key = sc.nextLine().toUpperCase();
+ String ans = "";
+int j = 0;
+ for (char c : text.toCharArray()) {
+if (c >= 'A' && c <= 'Z') {
+int x = (c - 'A' + key.charAt(j % key.length()) - 'A') % 26;
+ans += (char)('A' + x);
+j++;
+}
+else {
+ ans += c;
+            }
+        }
+System.out.println(ans);
+    }
+}
