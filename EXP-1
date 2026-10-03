@@ -1,0 +1,19 @@
+import java.util.*;
+public class Main {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+String text = sc.nextLine();
+int k = sc.nextInt();
+StringBuilder result = new StringBuilder();
+for (char ch : text.toCharArray()) {
+if (ch >= 'A' && ch <= 'Z') {
+ch = (char) ('A' + (ch - 'A' + k) % 26);
+}
+else if (ch >= 'a' && ch <= 'z') {
+ch = (char) ('a' + (ch - 'a' + k) % 26);
+}
+ result.append(ch);
+}
+System.out.println(result);
+    }
+}
