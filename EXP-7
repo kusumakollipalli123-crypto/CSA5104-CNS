@@ -1,0 +1,31 @@
+from collections import Counter
+
+text = input("Enter ciphertext: ")
+
+frequency = Counter(text)
+
+print("Character frequencies:")
+
+for ch, count in frequency.most_common():
+    print(ch, "=", count)
+
+mapping = {}
+
+while True:
+    symbol = input("Enter cipher symbol (STOP to finish): ")
+
+    if symbol.upper() == "STOP":
+        break
+
+    letter = input("Enter corresponding plaintext letter: ").upper()
+
+    if len(symbol) == 1 and len(letter) == 1:
+        mapping[symbol] = letter
+
+result = ""
+
+for ch in text:
+    result += mapping.get(ch, ch)
+
+print("Decrypted message:")
+print(result)
